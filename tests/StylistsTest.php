@@ -137,10 +137,6 @@
             $result = Stylist::findById($search_id);
 
             $this->assertEquals($new_stylist, $result);
-
-
-
-
         }
     }
 ?>
