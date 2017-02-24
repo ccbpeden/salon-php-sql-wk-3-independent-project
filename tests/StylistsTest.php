@@ -73,7 +73,18 @@
             array_push($result, $new_stylist->getLastName(), $new_stylist->getFirstName());
 
             $this->assertEquals(["D'Souza", "L&Broni'que"], $result);
+        }
 
+        function test_validate()
+        {
+            $stylist_last_name = "";
+            $stylist_first_name = "ab";
+            $stylist_specialty = "cuts";
+            $new_stylist = new Stylist($stylist_last_name, $stylist_first_name, $specialty);
+
+            $result = $new_stylist->validate();
+
+            $this->assertEquals(false, $result);
         }
     }
 ?>
