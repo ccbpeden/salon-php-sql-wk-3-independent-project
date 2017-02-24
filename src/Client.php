@@ -89,7 +89,7 @@
         {
             $this->setLastName($input_last_name);
             $this->setFirstName($input_first_name);
-            $this->setStylist($input_stylist_id);
+            $this->setStylistId($input_stylist_id);
             if($this->validate())
             {
                 $this->sanitize();
