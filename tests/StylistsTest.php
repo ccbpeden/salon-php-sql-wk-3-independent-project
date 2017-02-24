@@ -155,10 +155,20 @@
             $result = Stylist::findById($search_id);
 
             $this->assertEquals([$search_id, $update_last_name, $update_first_name, $update_specialty],[$result->getId(), $result->getLastName(), $result->getFirstName(), $result->getSpecialty()]);
+        }
 
+        function test_deleteById()
+        {
+            $stylist_last_name = "Saxifrage";
+            $stylist_first_name = "Agneska";
+            $specialty = "weaves";
+            $new_stylist = new Stylist($stylist_last_name, $stylist_first_name, $specialty);
+            $new_stylist->save();
 
+            $new_stylist->delete();
+            $result = Restaurant::getAll();
 
-
+            $this->assertEquals([], $result);
         }
     }
 ?>
