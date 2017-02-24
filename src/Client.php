@@ -59,7 +59,6 @@
         {
             $this->client_last_name = htmlspecialchars_decode(stripslashes($this->client_last_name));
             $this->client_first_name = htmlspecialchars_decode(stripslashes($this->client_first_name));
-
         }
 
         function validate()
@@ -156,6 +155,5 @@
             }
             return $matching_clients;
         }
-
     }
 ?>

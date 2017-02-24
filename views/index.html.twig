@@ -3,17 +3,14 @@
     <head>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link href="{{ app.request.getbaseurl }}/assets/css/styles.css" rel="stylesheet" type="text/css">
-
         <title>Epicene Salon</title>
     </head>
     <body>
         <div class="container">
-
             <h1>Epicene Salon Stylist and Client Management Systems</h1>
-
             <div class="jumbotron">
                 {% if stylists is not empty %}
-                    <h1>Your current Stylists are:</h1>
+                    <h2>Your current Stylists are:</h2>
                     <ul>
                         {% for stylist in stylists %}
                         <li><a href="/stylist/{{stylist.getId}}">{{stylist.getLastName}}, {{stylist.getFirstName}}</a> </li>
@@ -35,9 +32,6 @@
                     <button class="btn" type="submit" name="button">Add Stylist</button>
                 </form>
             </div>
-
         </div>
-
-
     </body>
 </html>

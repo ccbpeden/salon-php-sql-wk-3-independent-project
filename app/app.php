@@ -20,9 +20,7 @@
     $password = 'root';
     $DB = new PDO($server, $username, $password);
 
-    $app->register(new Silex\Provider\TwigServiceProvider(), array(
-    'twig.path' => __DIR__.'/../views'
-    ));
+    $app->register(new Silex\Provider\TwigServiceProvider(), array('twig.path' => __DIR__.'/../views'));
 
     $app->get("/", function() use ($app) {
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
@@ -30,9 +28,9 @@
 
     $app->post("/stylists", function() use($app) {
         $new_stylist = new Stylist($_POST['stylist_last_name'], $_POST['stylist_first_name'], $_POST['specialty']);
-        $validated = false;
-        $validated = $new_stylist->save();
-        if($validated){
+        $successful_creation = false;
+        $successful_creation = $new_stylist->save();
+        if($successful_creation){
             return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
         } else {
             return $app['twig']->render('invalid.html.twig', array('stylists' => Stylist::getAll()));
@@ -45,9 +43,9 @@
 
     $app->patch("/updatestylist", function() use ($app) {
         $updatable_stylist = Stylist::findById($_POST['id']);
-        $validated = false;
-        $validated = $updatable_stylist->update($_POST['stylist_last_name'], $_POST['stylist_first_name'], $_POST['specialty']);
-        if($validated)
+        $successful_update = false;
+        $successful_update = $updatable_stylist->update($_POST['stylist_last_name'], $_POST['stylist_first_name'], $_POST['specialty']);
+        if($successful_update)
         {
             return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
         } else {
@@ -68,9 +66,9 @@
 
     $app->post("/addclient", function() use ($app) {
         $new_client = new Client($_POST['client_last_name'], $_POST['client_first_name'], $_POST['stylist_id']);
-        $validated = false;
-        $validated = $new_client->save();
-        if ($validated)
+        $successful_add = false;
+        $successful_add = $new_client->save();
+        if ($successful_add)
         {
             return $app['twig']->render('stylist.html.twig', array('stylist' =>Stylist::findById($_POST['stylist_id']), 'clients' => Client::findByStylistId($_POST['stylist_id'])));
         } else {
@@ -84,8 +82,9 @@
 
     $app->patch("/updateclient", function() use ($app) {
         $updatable_client = Client::findById($_POST['id']);
-        $validated = $updatable_client->update($_POST['client_last_name'], $_POST['client_first_name'], $_POST['stylist_id']);
-        if ($validated)
+        $successful_update = false;
+        $successful_update = $updatable_client->update($_POST['client_last_name'], $_POST['client_first_name'], $_POST['stylist_id']);
+        if ($successful_update)
         {
             return $app['twig']->render('stylist.html.twig', array('stylist' =>Stylist::findById($_POST['stylist_id']), 'clients' => Client::findByStylistId($_POST['stylist_id'])));
         } else {
