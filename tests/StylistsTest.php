@@ -101,9 +101,22 @@
 
             $new_stylist->save();
             $result = Stylist::getAll();
-            var_dump($result);
 
             $this->assertEquals([$new_stylist], $result);
+        }
+
+        function test_deleteAll()
+        {
+            $stylist_last_name = "Cakehole";
+            $stylist_first_name = "CheezeNozzle";
+            $specialty = "mani/pedi";
+            $new_stylist = new Stylist($stylist_last_name, $stylist_first_name, $specialty);
+
+            $new_stylist->save();
+            Stylist::deleteAll();
+            $result = Stylist::getAll();
+
+            $this->assertEquals([], $result);
         }
     }
 ?>
