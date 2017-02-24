@@ -157,7 +157,7 @@
             $this->assertEquals([$search_id, $update_last_name, $update_first_name, $update_specialty],[$result->getId(), $result->getLastName(), $result->getFirstName(), $result->getSpecialty()]);
         }
 
-        function test_deleteById()
+        function test_delete()
         {
             $stylist_last_name = "Saxifrage";
             $stylist_first_name = "Agneska";
@@ -166,7 +166,7 @@
             $new_stylist->save();
 
             $new_stylist->delete();
-            $result = Restaurant::getAll();
+            $result = Stylist::getAll();
 
             $this->assertEquals([], $result);
         }

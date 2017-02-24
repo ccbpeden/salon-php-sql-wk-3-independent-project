@@ -94,8 +94,11 @@
                 $this->sanitize();
                 $GLOBALS['DB']->exec("UPDATE stylists SET stylist_last_name = '{$this->getLastName()}', stylist_first_name = '{$this->getFirstName()}', specialty = '{$this->getSpecialty()}' WHERE id = {$this->getId()};");
             }
+        }
 
-
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM stylists WHERE id = {$this->getId()};");
         }
 
         static function getAll()
