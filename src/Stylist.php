@@ -79,6 +79,7 @@
                 $this->sanitize();
                 $GLOBALS['DB']->exec("INSERT INTO stylists (stylist_last_name, stylist_first_name, specialty) VALUES ('{$this->getLastName()}', '{$this->getFirstName()}', '{$this->getSpecialty()}');");
                 $this->id = $GLOBALS['DB']->lastInsertId();
+                return true;
             } else {
                 return false;
             }
