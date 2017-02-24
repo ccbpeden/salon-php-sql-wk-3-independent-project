@@ -18,7 +18,7 @@
 
             <h2>Edit this stylist's details:</h2>
             <div class="well">
-                <form name="new-name" action="/display-update" method="post">
+                <form name="new-name" action="/update" method="post">
                     <input type="hidden" name="_method" value="patch">
                     <input type="hidden" name="id" id="id" value="{{stylist.getId}}">
                     <label for="stylist_first_name">New First Name</label>

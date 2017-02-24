@@ -43,5 +43,21 @@
         return $app['twig']->render('stylist.html.twig', array('stylist' =>Stylist::findById($id)));
     });
 
+    $app->patch("/update", function() use ($app) {
+        $updatable_stylist = Stylist::findById($_POST['id']);
+        $validated = false;
+        $validated = $updatable_stylist->update($_POST['stylist_last_name'], $_POST['stylist_first_name'], $_POST['specialty']);
+        if($validated)
+        {
+            return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
+        } else {
+            return $app['twig']->render('invalid.html.twig', array('stylists' => Stylist::getAll()));
+        }
+    });
+
+    $app->get("/delete_stylist/{id}", function($id) use ($app) {
+
+    });
+
     return $app;
 ?>
