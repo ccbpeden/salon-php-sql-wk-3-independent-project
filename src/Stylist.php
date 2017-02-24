@@ -66,5 +66,39 @@
                 return true;
             }
         }
+
+        function save()
+        {
+            if($this->validate())
+            {
+                $this->sanitize();
+                $GLOBALS['DB']->exec("INSERT INTO stylists (stylist_last_name, stylist_first_name, specialty) VALUES ('{$this->getLastName()}', '{$this->getFirstName()}', '{$this->getSpecialty()}');");
+                $this->id = $GLOBALS['DB']->lastInsertId();
+            } else {
+                return false;
+            }
+        }
+
+        static function getAll()
+        {
+            $returned_stylists = $GLOBALS['DB']->query("SELECT * FROM stylists;");
+            $all_stylists = array();
+            foreach($returned_stylists as $stylist)
+            {
+                $stylist_last_name = $stylist['stylist_last_name'];
+                $stylist_first_name = $stylist['stylist_first_name'];
+                $specialty = $stylist['specialty'];
+                $id = $stylist['id'];
+                $new_stylist = new Stylist($stylist_last_name, $stylist_first_name, $specialty, $id);
+                $new_stylist->desanitize();
+                array_push($all_stylists, $new_stylist);
+            }
+            return $all_stylists;
+        }
+
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM stylists;");
+        }
     }
 ?>
