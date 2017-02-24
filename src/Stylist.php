@@ -43,5 +43,12 @@
         {
             $this->specialty = $input_specialty;
         }
+
+        function sanitize()
+        {
+            $this->stylist_last_name = htmlspecialchars(addslashes(trim($this->stylist_last_name)));
+            $this->stylist_first_name = htmlspecialchars(addslashes(trim($this->stylist_first_name)));
+
+        }
     }
 ?>

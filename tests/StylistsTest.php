@@ -55,10 +55,10 @@
             $new_stylist = new Stylist($stylist_last_name, $stylist_first_name, $specialty);
 
             $new_stylist->sanitize();
-            $result = array()
+            $result = array();
             array_push($result, $new_stylist->getLastName(), $new_stylist->getFirstName());
 
-            $this->assertEquals([], $result);
+            $this->assertEquals(["D\'Souza", "L&amp;Broni\'que"], $result);
 
         }
     }
