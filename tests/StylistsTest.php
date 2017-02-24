@@ -77,9 +77,9 @@
 
         function test_validate()
         {
-            $stylist_last_name = "";
-            $stylist_first_name = "ab";
-            $stylist_specialty = "cuts";
+            $stylist_last_name = "d";
+            $stylist_first_name = "";
+            $specialty = "cuts";
             $new_stylist = new Stylist($stylist_last_name, $stylist_first_name, $specialty);
 
             $result = $new_stylist->validate();

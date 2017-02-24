@@ -56,5 +56,15 @@
             $this->stylist_first_name = htmlspecialchars_decode(stripslashes($this->stylist_first_name));
 
         }
+
+        function validate()
+        {
+            if(empty($this->stylist_last_name)||empty($this->stylist_first_name||empty($this->specialty)))
+            {
+                return false;
+            } else {
+                return true;
+            }
+        }
     }
 ?>
