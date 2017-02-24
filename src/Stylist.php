@@ -48,6 +48,12 @@
         {
             $this->stylist_last_name = htmlspecialchars(addslashes(trim($this->stylist_last_name)));
             $this->stylist_first_name = htmlspecialchars(addslashes(trim($this->stylist_first_name)));
+        }
+
+        function desanitize()
+        {
+            $this->stylist_last_name = htmlspecialchars_decode(stripslashes($this->stylist_last_name));
+            $this->stylist_first_name = htmlspecialchars_decode(stripslashes($this->stylist_first_name));
 
         }
     }
