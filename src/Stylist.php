@@ -29,5 +29,19 @@
             return $this->specialty;
         }
 
+        function setLastName($input_last_name)
+        {
+            $this->stylist_last_name = $input_last_name;
+        }
+
+        function setFirstName($input_first_name)
+        {
+            $this->stylist_first_name = $input_first_name;
+        }
+
+        function setSpecialty($input_specialty)
+        {
+            $this->specialty = $input_specialty;
+        }
     }
 ?>
