@@ -84,6 +84,20 @@
             }
         }
 
+        function update($input_last_name, $input_first_name, $input_specialty)
+        {
+            $this->setLastName($input_last_name);
+            $this->setFirstName($input_first_name);
+            $this->setSpecialty($input_specialty);
+            if($this->validate())
+            {
+                $this->sanitize();
+                $GLOBALS['DB']->exec("UPDATE stylists SET stylist_last_name = '{$this->getLastName()}', stylist_first_name = '{$this->getFirstName()}', specialty = '{$this->getSpecialty()}' WHERE id = {$this->getId()};");
+            }
+
+
+        }
+
         static function getAll()
         {
             $returned_stylists = $GLOBALS['DB']->query("SELECT * FROM stylists;");
@@ -119,5 +133,6 @@
                 }
             }
         }
+
     }
 ?>

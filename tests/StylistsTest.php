@@ -138,5 +138,27 @@
 
             $this->assertEquals($new_stylist, $result);
         }
+
+        function test_update()
+        {
+            $stylist_last_name = "von Habsburg";
+            $stylist_first_name = "Franz-Ferdinand";
+            $specialty = "facial";
+            $new_stylist = new Stylist($stylist_last_name, $stylist_first_name, $specialty);
+            $new_stylist->save();
+            $search_id = $new_stylist->getId();
+            $update_last_name = "von Wittlesbach";
+            $update_first_name = "Rudolf";
+            $update_specialty = "weaves";
+
+            $new_stylist->update($update_last_name, $update_first_name, $update_specialty);
+            $result = Stylist::findById($search_id);
+
+            $this->assertEquals([$search_id, $update_last_name, $update_first_name, $update_specialty],[$result->getId(), $result->getLastName(), $result->getFirstName(), $result->getSpecialty()]);
+
+
+
+
+        }
     }
 ?>
