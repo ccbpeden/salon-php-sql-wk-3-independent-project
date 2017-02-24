@@ -86,5 +86,18 @@
 
             $this->assertEquals(false, $result);
         }
+
+        function test_saveAndGetAll()
+        {
+            $stylist_last_name = "Bardas";
+            $stylist_first_name = "Phocas";
+            $specialty = "weaves";
+            $new_stylist = new Stylist($stylist_last_name, $stylist_first_name, $specialty);
+
+            $new_stylist->save();
+            $result = Stylist::getAll();
+
+            $this->assertEquals([$new_stylist], $result);
+        }
     }
 ?>
