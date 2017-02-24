@@ -40,7 +40,7 @@
     });
 
     $app->get("/stylists/{id}", function($id) use ($app) {
-        return $app['twig']->render('stylist.twig.html', array('stylists' =>Stylist::find($id)));
+        return $app['twig']->render('stylist.html.twig', array('stylist' =>Stylist::findById($id)));
     });
 
     return $app;

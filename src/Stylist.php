@@ -94,6 +94,9 @@
             {
                 $this->sanitize();
                 $GLOBALS['DB']->exec("UPDATE stylists SET stylist_last_name = '{$this->getLastName()}', stylist_first_name = '{$this->getFirstName()}', specialty = '{$this->getSpecialty()}' WHERE id = {$this->getId()};");
+                return true;
+            } else {
+                return false;
             }
         }
 
