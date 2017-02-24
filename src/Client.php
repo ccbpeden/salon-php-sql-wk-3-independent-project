@@ -131,14 +131,15 @@
         {
             $found_client = null;
             $all_clients = Client::getAll();
-            foreach ($all_clients as $client)
+            foreach ($all_clients as $individual_client)
             {
-                $client_id = $client->getId();
-                if($client_id = $input_id)
+                $individual_client_id = $individual_client->getId();
+                if($individual_client_id == $input_id)
                 {
-                    return $client;
+                    $found_client = $individual_client;
                 }
             }
+            return $found_client;
         }
 
         static function findByStylistId($input_id)

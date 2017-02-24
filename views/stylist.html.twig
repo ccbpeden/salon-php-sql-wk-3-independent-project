@@ -13,29 +13,57 @@
             <h1>Epicene Salon Stylist and Client Management Systems</h1>
 
             {% if stylist is not empty %}
-            <h2>Stylist Name: {{stylist.getFirstName}}  {{stylist.getLastName}}</h2>
-            <h3>Stylist Specialty: {{stylist.getSpecialty}}</h3>
-
-            <h2>Edit this stylist's details:</h2>
+            <h2><em>Stylist Name:</em> {{stylist.getFirstName}}  {{stylist.getLastName}}</h2>
             <div class="well">
-                <form name="new-name" action="/update" method="post">
-                    <input type="hidden" name="_method" value="patch">
-                    <input type="hidden" name="id" id="id" value="{{stylist.getId}}">
-                    <label for="stylist_first_name">New First Name</label>
-                    <input class="form-control" type="text" name="stylist_first_name" id="stylist_first_name" value="{{stylist.getFirstName}}">
-                    <label for="stylist_last_name">New Last Name</label>
-                    <input class="form-control" type="text" name="stylist_last_name" id="stylist_last_name" value="{{stylist.getLastName}}">
-                    <label for="specialty">New Specialty</label>
-                    <input class="form-control" type="text" name="specialty" id="specialty" value="{{stylist.getSpecialty}}">
+                <h3><em>Specialty</em>: {{stylist.getSpecialty}}</h3>
+                {% if clients is not empty %}
+                <div class="well">
+                    <h4><em>Current Clients:</em></h4>
+                    <ul>
+                        {% for client in clients %}
+                        <li><a href="/client/{{client.getId}}">{{client.getLastName}}, {{client.getFirstName}}</a></li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <h2>This stylist has no clients.</h2>
+                    {% endif %}
+                    <div class="well">
+                        <h4>Add a client:</h4>
+                        <div class="well">
+                            <form name="new-name" action="/addclient" method="post">
+                                <input type="hidden" name="stylist_id" id="stylist_id" value="{{stylist.getId}}">
+                                <label for="client_first_name">Client First Name</label>
+                                <input class="form-control" type="text" name="client_first_name" id="client_first_name" value="">
+                                <label for="client_last_name">Client Last Name</label>
+                                <input class="form-control" type="text" name="client_last_name" id="client_last_name" value="">
+                                <button class="btn btn-info" type="submit" name="button">Add Client!</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <h4>Edit this stylist's details:</h4>
+                <div class="well">
+                    <form name="new-name" action="/updatestylist" method="post">
+                        <input type="hidden" name="_method" value="patch">
+                        <input type="hidden" name="id" id="id" value="{{stylist.getId}}">
+                        <label for="stylist_first_name">New First Name</label>
+                        <input class="form-control" type="text" name="stylist_first_name" id="stylist_first_name" value="{{stylist.getFirstName}}">
+                        <label for="stylist_last_name">New Last Name</label>
+                        <input class="form-control" type="text" name="stylist_last_name" id="stylist_last_name" value="{{stylist.getLastName}}">
+                        <label for="specialty">New Specialty</label>
+                        <input class="form-control" type="text" name="specialty" id="specialty" value="{{stylist.getSpecialty}}">
 
-                    <button class="btn btn-info" type="submit" name="button">Update</button>
-                </form>
-                <form class="form-group" action="/delete_stylist/{{stylist.getId}}"  method="post">
-                    <input type="hidden" name="_method" value="delete">
-                    <button id="delete" class="btn btn-danger" type="submit" name="button">Delete this stylist and associated clients</button>
-                </form>
-                {% endif %}
+                        <button class="btn btn-info" type="submit" name="button">Update</button>
+                    </form>
+                    <form class="form-group" action="/delete_stylist/{{stylist.getId}}"  method="post">
+                        <input type="hidden" name="_method" value="delete">
+                        <button id="delete" class="btn btn-danger" type="submit" name="button">Delete this stylist and associated clients</button>
+                    </form>
+                    {% endif %}
+                </div>
             </div>
+
+
             <li><a class="return" href="/">Return to a list of Stylists</a></li>
 
         </div>

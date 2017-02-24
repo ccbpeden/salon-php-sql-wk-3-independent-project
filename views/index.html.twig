@@ -16,7 +16,7 @@
                     <h1>Your current Stylists are:</h1>
                     <ul>
                         {% for stylist in stylists %}
-                        <li><a href="/stylists/{{stylist.getId}}">{{stylist.getLastName}}, {{stylist.getFirstName}}</a> </li>
+                        <li><a href="/stylist/{{stylist.getId}}">{{stylist.getLastName}}, {{stylist.getFirstName}}</a> </li>
                         {% endfor %}
                     </ul>
                 {% else %}

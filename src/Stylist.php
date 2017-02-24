@@ -131,14 +131,15 @@
         {
             $found_stylist = null;
             $all_stylists = Stylist::getAll();
-            foreach ($all_stylists as $stylist)
+            foreach ($all_stylists as $individual_stylist)
             {
-                $stylist_id = $stylist->getId();
-                if($stylist_id = $input_id)
+                $individual_stylist_id = $individual_stylist->getId();
+                if($individual_stylist_id == $input_id)
                 {
-                    return $stylist;
+                    $found_stylist = $individual_stylist;
                 }
             }
+            return $found_stylist;
         }
 
     }

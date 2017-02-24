@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="{{ app.request.getbaseurl }}/assets/css/styles.css" rel="stylesheet" type="text/css">
+
+        <meta charset="utf-8">
+        <title>Epicene Salon</title>
+    </head>
+    <body>
+        <div class="container">
+
+            <h1>Epicene Salon Stylist and Client Management Systems</h1>
+
+            <div class="well">
+                {% if client is not empty %}
+                <h2><em>Client:</em> {{client.getFirstName}} {{client.getLastName}}</h2>
+
+                <h3>Edit this client's details:</h3>
+                <div class="well">
+                    <form name="new-name" action="/updateclient" method="post">
+                        <input type="hidden" name="_method" value="patch">
+                        <input type="hidden" name="id" id="id" value="{{client.getId}}">
+                        <label for="client_first_name">New First Name</label>
+                        <input class="form-control" type="text" name="client_first_name" id="client_first_name" value="{{client.getFirstName}}">
+                        <label for="client_last_name">New Last Name</label>
+                        <input class="form-control" type="text" name="client_last_name" id="client_last_name" value="{{client.getLastName}}">
+                        <label for="stylist_id">Different Stylist?</label>
+                        <select class="form-control" name="stylist_id">
+                            <option value={{client.getStylistId}}>Keep Current Stylist<option>
+                                {% for stylist in stylists %}
+                                <option value={{stylist.getId}}>{{stylist.getFirstName}} {{stylist.getLastName}}</option>
+                                {% endfor %}
+                            </select>
+
+                            <button class="btn btn-info" type="submit" name="button">Update</button>
+                        </form>
+                        <form class="form-group" action="/delete_client/{{client.getId}}"  method="post">
+                            <input type="hidden" name="_method" value="delete">
+                            <button id="delete" class="btn btn-danger" type="submit" name="button">Delete this client</button>
+                        </form>
+                        {% endif %}
+                    </div>
+            </div>
+            <li><a class="return" href="/">Return to a list of Stylists</a></li>
+
+        </div>
+    </body>
+</html>
