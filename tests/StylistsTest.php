@@ -59,6 +59,20 @@
             array_push($result, $new_stylist->getLastName(), $new_stylist->getFirstName());
 
             $this->assertEquals(["D\'Souza", "L&amp;Broni\'que"], $result);
+        }
+
+        function test_desanitize()
+        {
+            $stylist_last_name = "D\'Souza";
+            $stylist_first_name = "L&Broni'que";
+            $specialty = "straightening, perms, dying";
+            $new_stylist = new Stylist($stylist_last_name, $stylist_first_name, $specialty);
+
+            $new_stylist->desanitize();
+            $result = array();
+            array_push($result, $new_stylist->getLastName(), $new_stylist->getFirstName());
+
+            $this->assertEquals(["D'Souza", "L&Broni'que"], $result);
 
         }
     }
