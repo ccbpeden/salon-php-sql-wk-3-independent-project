@@ -145,12 +145,12 @@
         {
             $matching_clients = array();
             $all_clients = Client::getAll();
-            foreach($all_clients as $client)
+            foreach($all_clients as $current_client)
             {
-                $client_stylist_id = $client->getStylistId();
+                $client_stylist_id = $current_client->getStylistId();
                 if ($client_stylist_id == $input_id)
                 {
-                    array_push($matching_clients, $client);
+                    array_push($matching_clients, $current_client);
                 }
             }
             return $matching_clients;

@@ -5,7 +5,6 @@
     */
 
     require_once "src/Client.php";
-    require_once "src/Client.php";
 
     $server = 'mysql:host=localhost:8889;dbname=hair_salon_test';
     $username = 'root';
@@ -169,6 +168,26 @@
             $result = Client::getAll();
 
             $this->assertEquals([], $result);
+        }
+
+        function test_findByStylistId()
+        {
+            $client_last_name = "Saxifrage";
+            $client_first_name = "Agneska";
+            $stylist_id = 1;
+            $new_client = new Client($client_last_name, $client_first_name, $stylist_id);
+            $new_client->save();
+
+            $client_last_name2 = "Bork";
+            $client_first_name2 = "Robert";
+            $stylist_id2 = 2;
+            $new_client2 = new Client($client_last_name2, $client_first_name2, $stylist_id2);
+            $new_client2->save();
+
+            $result = Client::findByStylistId($stylist_id);
+
+            $this->assertEquals([$new_client], $result);
+
         }
     }
 ?>
