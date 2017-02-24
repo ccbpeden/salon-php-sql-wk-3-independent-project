@@ -64,10 +64,12 @@
 
         function validate()
         {
-            if(empty($this->stylist_last_name)||empty($this->stylist_first_name||empty($this->specialty)))
+            if(empty($this->stylist_last_name)||empty($this->stylist_first_name)||empty($this->specialty))
             {
+                echo("false");
                 return false;
             } else {
+                echo("true");
                 return true;
             }
         }

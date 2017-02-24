@@ -55,8 +55,10 @@
         }
     });
 
-    $app->get("/delete_stylist/{id}", function($id) use ($app) {
-
+    $app->delete("/delete_stylist/{id}", function($id) use ($app) {
+        $deletable_stylist = Stylist::findById($id);
+        $deletable_stylist->delete();
+        return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
 
     return $app;

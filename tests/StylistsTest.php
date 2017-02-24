@@ -83,8 +83,8 @@
         function test_validate()
         {
             $stylist_last_name = "d";
-            $stylist_first_name = "";
-            $specialty = "cuts";
+            $stylist_first_name = "b";
+            $specialty = "";
             $new_stylist = new Stylist($stylist_last_name, $stylist_first_name, $specialty);
 
             $result = $new_stylist->validate();
