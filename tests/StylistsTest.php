@@ -118,5 +118,29 @@
 
             $this->assertEquals([], $result);
         }
+
+        function testFindByID()
+        {
+            $stylist_last_name = "Bork";
+            $stylist_first_name = "Robert";
+            $specialty = "weaves";
+            $new_stylist = new Stylist($stylist_last_name, $stylist_first_name, $specialty);
+            $new_stylist->save();
+            $search_id = $new_stylist->getId();
+
+            $another_stylist_last_name = "Pork";
+            $another_stylist_first_name = "Billy";
+            $another_specialty = "facials";
+            $another_new_stylist = new Stylist($stylist_last_name, $stylist_first_name, $specialty);
+            $another_new_stylist->save();
+
+            $result = Stylist::findById($search_id);
+
+            $this->assertEquals($new_stylist, $result);
+
+
+
+
+        }
     }
 ?>

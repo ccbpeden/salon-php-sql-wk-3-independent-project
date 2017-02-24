@@ -29,6 +29,11 @@
             return $this->specialty;
         }
 
+        function getId()
+        {
+            return $this->id;
+        }
+
         function setLastName($input_last_name)
         {
             $this->stylist_last_name = $input_last_name;
